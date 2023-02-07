@@ -24,7 +24,7 @@ namespace D2Rbots
 
         public static void WriteLine(string message)
         {
-            m_Queue.Add($"|{DateTime.UtcNow}|  : {message}");
+            m_Queue.Add($"|{DateTime.UtcNow}| : {message}");
         }
     }
 }

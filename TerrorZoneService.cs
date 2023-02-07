@@ -21,27 +21,16 @@ namespace D2Rbots
         }
         public async Task StartServiceAsync()
         {
-            SetUpKeepAlive();
             SetUpRoutineCheck();
         }
 
-        private async Task SetUpKeepAlive()
-        {
-            var counter = 0;
-            var max = _startArgs.Length != 0 ? Convert.ToInt32(_startArgs[0]) : -1;
-            while (max == -1 || counter < max)
-            {
-                ConsoleLogMessage($"Keep alive triggered: {++counter}");
-                await Task.Delay(TimeSpan.FromMilliseconds(10_000));
-            }
-        }
         private async Task SetUpRoutineCheck()
         {
             var counter = 0;
             var max = _startArgs.Length != 0 ? Convert.ToInt32(_startArgs[0]) : -1;
             while (max == -1 || counter < max)
             {
-                ConsoleLogMessage($"Routine check: {++counter}");
+                ConsoleLogMessage($"Routine check: {++counter} | Next scheduled update : {_nextScheduledTZUpdate}");
                 CheckForApiCalls();
                 await Task.Delay(TimeSpan.FromMilliseconds(10_000));
             }
@@ -70,7 +59,7 @@ namespace D2Rbots
                     {
                         PostToDiscord(response);
                     }
-                    ConsoleLogMessage($"Scheduling next update to {_nextScheduledTZUpdate.ToUniversalTime()}");
+                    ConsoleLogMessage($"Scheduling next update to {_nextScheduledTZUpdate}");
 
                 }
                 catch (Exception ex)
