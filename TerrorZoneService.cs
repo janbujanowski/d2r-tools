@@ -75,7 +75,7 @@ namespace D2Rbots
             var current = DateTime.UtcNow;
             current = current.AddHours(1);
 
-            return new DateTime(current.Year, current.Month, current.Day, current.Hour, 0, 0, 0);
+            return new DateTime(current.Year, current.Month, current.Day, current.Hour, 0, 45, 0);
         }
 
         public ManualResetEvent _quitEvent = new ManualResetEvent(false);
