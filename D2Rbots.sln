@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D2Rbots", "D2Rbots.csproj", "{5355263A-934B-4D33-983C-88B6C3D7591C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5355263A-934B-4D33-983C-88B6C3D7591C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5355263A-934B-4D33-983C-88B6C3D7591C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5355263A-934B-4D33-983C-88B6C3D7591C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5355263A-934B-4D33-983C-88B6C3D7591C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {975242E7-5E11-442E-A383-C5E601685655}
+	EndGlobalSection
+EndGlobal

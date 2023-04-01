@@ -12,19 +12,17 @@ namespace D2Rbots
     {
         private string _discordWebhookUrl = "https://discord.com/api/webhooks/";
         private string _d2runewizardRequestUrl = "https://d2runewizard.com/api/terror-zone?token=";
-        private string _discordToken;
-        private string _d2runewizardToken;
         private string[] _startArgs;
         private DateTime _nextScheduledTZUpdate;
-        public TerrorZoneService(string discordToken, string d2runewizardToken, string[] args)
+        public TerrorZoneService(string discordTokenArg, string d2runewizardTokenArg, string[] args)
         {
-            if (string.IsNullOrEmpty(discordToken) || string.IsNullOrEmpty(d2runewizardToken))
+            if (string.IsNullOrEmpty(discordTokenArg) || string.IsNullOrEmpty(d2runewizardTokenArg))
             {
-                Console.WriteLine($"Invalid token value. discord={discordToken} d2runewizardToken={d2runewizardToken}");
+                Console.WriteLine($"Invalid token value. discord={discordTokenArg} d2runewizardToken={d2runewizardTokenArg}");
                 throw new ArgumentNullException();
             }
-            _discordToken = discordToken;
-            _d2runewizardToken = d2runewizardToken;
+            _discordWebhookUrl = _discordWebhookUrl + discordTokenArg;
+            _d2runewizardRequestUrl = _d2runewizardRequestUrl + d2runewizardTokenArg;
             this._startArgs = args;
             SetUpQuitEvents();
         }
