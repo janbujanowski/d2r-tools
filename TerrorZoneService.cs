@@ -12,6 +12,7 @@ namespace D2Rbots
     {
         private string _discordWebhookUrl = "https://discord.com/api/webhooks/";
         private string _d2runewizardRequestUrl = "https://d2runewizard.com/api/terror-zone?token=";
+        Dictionary<string, string> _customRunewizardAuthHeaders;
         private string[] _startArgs;
         private DateTime _nextScheduledTZUpdate;
         public TerrorZoneService(string discordTokenArg, string d2runewizardTokenArg, string[] args)
@@ -23,6 +24,12 @@ namespace D2Rbots
             }
             _discordWebhookUrl = _discordWebhookUrl + discordTokenArg;
             _d2runewizardRequestUrl = _d2runewizardRequestUrl + d2runewizardTokenArg;
+            _customRunewizardAuthHeaders = new Dictionary<string, string>()
+            {
+                { "D2R-Contact", "jan.bujanowski@gmail.com" },
+                { "D2R-Platform", "Discord" },
+                { "D2R-Repo", "https://github.com/janbujanowski/d2r-tools" }
+            };
             this._startArgs = args;
             SetUpQuitEvents();
         }
@@ -106,8 +113,12 @@ namespace D2Rbots
             D2runewizardTZRespone? tryParseResponse = new D2runewizardTZRespone();
             using (var httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri(_d2runewizardRequestUrl);
-                var httpResponse = httpClient.GetAsync(httpClient.BaseAddress).Result;
+                var request = new HttpRequestMessage(HttpMethod.Get, _d2runewizardRequestUrl);
+                foreach (var header in _customRunewizardAuthHeaders)
+                {
+                    request.Headers.Add(header.Key, header.Value);
+                }
+                var httpResponse = httpClient.SendAsync(request).Result;
                 var response = JObject.Parse(httpResponse.Content.ReadAsStringAsync().Result);
                 tryParseResponse = response.ToObject<D2runewizardTZRespone>();
             }
